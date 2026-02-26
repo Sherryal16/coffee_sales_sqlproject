@@ -1,0 +1,14 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 03 - Total Coffee Sales Last Quarter 2023
+-- Description: Calculates total coffee sales for Q4 2023
+-- =========================================
+
+USE sql_customer;
+
+SELECT 
+    SUM(total) AS last_quartersales_2023
+FROM sales
+WHERE sale_date >= '2023-10-01'
+  AND sale_date <= '2023-12-31';
+
