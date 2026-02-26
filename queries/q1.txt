@@ -1,0 +1,16 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 01 - Coffee Consumer Count
+-- Description: Counts how many people in each city drink coffee
+-- =========================================
+
+USE sql_customer;
+
+SELECT  
+    ci.city_id,
+    ci.city_name,
+    COUNT(cu.customer_id) AS no_of_customers
+FROM city ci
+JOIN customers cu ON ci.city_id = cu.city_id
+GROUP BY ci.city_id, ci.city_name
+ORDER BY no_of_customers DESC;
