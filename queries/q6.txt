@@ -1,0 +1,17 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 06 - Average Sales per Customer per City
+-- Description: Calculates the average total sales per customer for each city
+-- =========================================
+
+USE sql_customer;
+
+SELECT 
+    ci.city_id,
+    ci.city_name,
+    SUM(s.total) / COUNT(DISTINCT cu.customer_id) AS avg_sales_per_customer
+FROM city ci
+JOIN customers cu ON ci.city_id = cu.city_id
+JOIN sales s ON cu.customer_id = s.customer_id
+GROUP BY ci.city_id, ci.city_name
+ORDER BY avg_sales_per_customer DESC;
