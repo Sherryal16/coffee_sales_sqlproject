@@ -1,0 +1,17 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 08 - Top Cities by Number of Sales
+-- Description: Counts total number of sales transactions per city
+-- =========================================
+
+USE sql_customer;
+
+SELECT 
+    ci.city_id,
+    ci.city_name,
+    COUNT(s.sale_id) AS no_of_sales
+FROM city ci
+JOIN customers cu ON cu.city_id = ci.city_id
+JOIN sales s ON cu.customer_id = s.customer_id
+GROUP BY ci.city_id, ci.city_name
+ORDER BY no_of_sales DESC;
