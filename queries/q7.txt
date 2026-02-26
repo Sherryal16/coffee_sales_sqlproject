@@ -1,0 +1,17 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 07 - Top 5 Best-Selling Products
+-- Description: Lists the top 5 products based on total sales revenue
+-- =========================================
+
+USE sql_customer;
+
+SELECT 
+    p.product_id,
+    p.product_name,
+    SUM(s.total) AS saled
+FROM products p
+JOIN sales s ON s.product_id = p.product_id
+GROUP BY p.product_id, p.product_name
+ORDER BY saled DESC
+LIMIT 5;
