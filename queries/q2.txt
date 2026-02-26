@@ -1,0 +1,13 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 02 - Target Audience
+-- Description: Calculates the potential coffee consumers per city (25% of population)
+-- =========================================
+
+USE sql_customer;
+
+SELECT  
+    ci.city_name,
+    ROUND(ci.population * 0.25, 2) AS no_of_potentialcustomers
+FROM city ci
+ORDER BY no_of_potentialcustomers DESC;
