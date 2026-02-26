@@ -1,0 +1,18 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 04 - Total Coffee Sales Last Quarter 2023 by City
+-- Description: Calculates total coffee sales for each city in Q4 2023
+-- =========================================
+
+USE sql_customer;
+
+SELECT 
+    ci.city_name,
+    SUM(s.total) AS last_quarter_sales_2023
+FROM city ci
+JOIN customers cu ON ci.city_id = cu.city_id
+JOIN sales s ON cu.customer_id = s.customer_id
+WHERE s.sale_date >= '2023-10-01'
+  AND s.sale_date < '2024-01-01'
+GROUP BY ci.city_id, ci.city_name
+ORDER BY last_quarter_sales_2023 DESC;
