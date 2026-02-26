@@ -1,0 +1,16 @@
+-- =========================================
+-- Project: Coffee Sales Analysis
+-- Query: 05 - Units Sold per Product
+-- Description: Counts how many units of each product were sold
+-- =========================================
+
+USE sql_customer;
+
+SELECT     
+    p.product_id,
+    p.product_name,
+    COUNT(s.product_id) AS sales_count
+FROM products p
+JOIN sales s ON p.product_id = s.product_id
+GROUP BY p.product_id, p.product_name
+ORDER BY sales_count DESC;
